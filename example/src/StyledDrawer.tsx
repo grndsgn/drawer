@@ -111,6 +111,7 @@ const DrawerExample = createDrawerNavigator(
 );
 
 DrawerExample.navigationOptions = {
+  // @ts-ignore
   header: null,
 };
 

@@ -13,7 +13,7 @@ import {
   TapGestureHandler,
   State,
 } from 'react-native-gesture-handler';
-import Animated from 'react-native-reanimated';
+import Animated, { interpolateNode } from 'react-native-reanimated';
 import DrawerProgressContext from '../utils/DrawerProgressContext';
 
 const {
@@ -23,7 +23,6 @@ const {
   clockRunning,
   startClock,
   stopClock,
-  interpolate,
   spring,
   abs,
   add,
@@ -548,7 +547,7 @@ export default class Drawer extends React.PureComponent<Props> {
                   style={[
                     styles.overlay,
                     {
-                      opacity: interpolate(this.progress, {
+                      opacity: interpolateNode(this.progress, {
                         inputRange: [PROGRESS_EPSILON, 1],
                         outputRange: [0, 1],
                       }),

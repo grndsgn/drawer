@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Dimensions, StyleSheet, ViewStyle } from 'react-native';
+import { Dimensions, EmitterSubscription, StyleSheet, ViewStyle } from 'react-native';
 import {
   SceneView,
   ThemeColors,
@@ -65,6 +65,8 @@ export default class DrawerView extends React.PureComponent<Props, State> {
     lazy: true,
   };
 
+  private subscription: EmitterSubscription | undefined;
+
   static getDerivedStateFromProps(nextProps: Props, prevState: State) {
     const { index } = nextProps.navigation.state;
 
@@ -90,7 +92,7 @@ export default class DrawerView extends React.PureComponent<Props, State> {
       this.handleDrawerOpen();
     }
 
-    Dimensions.addEventListener('change', this.updateWidth);
+    this.subscription = Dimensions.addEventListener('change', this.updateWidth);
   }
 
   componentDidUpdate(prevProps: Props) {
@@ -107,9 +109,12 @@ export default class DrawerView extends React.PureComponent<Props, State> {
   }
 
   componentWillUnmount() {
-    Dimensions.removeEventListener('change', this.updateWidth);
+    if (this.subscription && typeof this.subscription.remove === 'function') {
+      this.subscription.remove()
+    }
   }
 
+  // @ts-ignore
   context!: React.ContextType<typeof ThemeContext>;
 
   private drawerGestureRef = React.createRef<PanGestureHandler>();
@@ -156,6 +161,7 @@ export default class DrawerView extends React.PureComponent<Props, State> {
     return (
       <DrawerSidebar
         screenProps={this.props.screenProps}
+        {...this.props.navigationConfig}
         drawerOpenProgress={progress}
         navigation={this.props.navigation}
         descriptors={this.props.descriptors}
@@ -163,7 +169,6 @@ export default class DrawerView extends React.PureComponent<Props, State> {
         contentOptions={this.props.navigationConfig.contentOptions}
         drawerPosition={this.props.navigationConfig.drawerPosition}
         style={this.props.navigationConfig.style}
-        {...this.props.navigationConfig}
       />
     );
   };

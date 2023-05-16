@@ -209,7 +209,7 @@ const DrawerContents = ({
 }: DrawerContentComponentProps) => {
   // `contentComponent` is passed an Animated.Value called drawerOpenProgress
   // that can be used to do interesting things like a simple parallax drawe
-  const translateX = Animated.interpolate(drawerOpenProgress, {
+  const translateX = Animated.interpolateNode(drawerOpenProgress, {
     inputRange: [0, 1],
     outputRange: [-100, 0],
   });
