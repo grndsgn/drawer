@@ -1,32 +1,32 @@
+import { MaterialIcons } from '@expo/vector-icons';
 import React from 'react';
 import {
   Button,
   Dimensions,
-  TouchableOpacity,
   ScrollView,
   StyleSheet,
+  TouchableOpacity,
   View,
 } from 'react-native';
+import Animated from 'react-native-reanimated';
 import {
-  ThemeColors,
-  useTheme,
-  Themed,
-  SafeAreaView,
   NavigationRoute,
+  SafeAreaView,
+  ThemeColors,
+  Themed,
+  useTheme,
 } from 'react-navigation';
 import {
-  createStackNavigator,
-  NavigationStackScreenComponent,
-  NavigationStackProp,
-} from 'react-navigation-stack';
-import {
-  createDrawerNavigator,
   DrawerContentComponentProps,
   NavigationDrawerOptions,
   NavigationDrawerProp,
+  createDrawerNavigator,
 } from 'react-navigation-drawer';
-import Animated from 'react-native-reanimated';
-import { MaterialIcons } from '@expo/vector-icons';
+import {
+  NavigationStackProp,
+  NavigationStackScreenComponent,
+  createStackNavigator,
+} from 'react-navigation-stack';
 
 type Params = { drawerLockMode: 'unlocked' | 'locked-open' | 'locked-closed' };
 
