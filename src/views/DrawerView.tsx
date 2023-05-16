@@ -114,6 +114,7 @@ export default class DrawerView extends React.PureComponent<Props, State> {
     }
   }
 
+
   // @ts-ignore
   context!: React.ContextType<typeof ThemeContext>;
 
