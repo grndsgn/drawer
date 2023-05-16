@@ -13,7 +13,7 @@ import {
   TapGestureHandler,
   State,
 } from 'react-native-gesture-handler';
-import Animated, { interpolateNode } from 'react-native-reanimated';
+import Animated from 'react-native-reanimated';
 import DrawerProgressContext from '../utils/DrawerProgressContext';
 
 const {
